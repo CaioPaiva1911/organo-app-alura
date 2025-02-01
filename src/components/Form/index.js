@@ -7,16 +7,6 @@ import './Form.css'
 
 const Form = (props) => {
 
-    const teams = [
-        "Programming",
-        "Front-End",
-        "Data Science",
-        "DevOps",
-        "UX and Design",
-        "Mobile",
-        "Inovation and Business"
-    ]
-
     const [name, setName] = useState('')
     const [cargo, setCargo] = useState('')
     const [image, setImage] = useState('')
@@ -30,6 +20,10 @@ const Form = (props) => {
             image, 
             team 
         })
+        setName('')
+        setCargo('')
+        setImage('')
+        setTeam('')
     }
 
     return (
@@ -59,7 +53,7 @@ const Form = (props) => {
                 <DropdownList 
                     required={true} 
                     label="Teams" 
-                    itens={teams}
+                    itens={props.teams}
                     value={team}
                     onChange={value => setTeam(value)}
                 />
