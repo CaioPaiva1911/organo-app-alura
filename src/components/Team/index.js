@@ -12,8 +12,8 @@ const Team = (props) => {
                     backgroundColor={props.primaryColor}
                     key={colaborator.name}
                     name={colaborator.name} 
-                    cargo={colaborator.cargo} i
-                    mage={colaborator.image} 
+                    cargo={colaborator.cargo}
+                    image={colaborator.image} 
                 />
             )}
             </div>
