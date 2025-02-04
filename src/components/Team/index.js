@@ -1,21 +1,21 @@
 import Colaborator from '../Colaborator';
 import './Team.css';
 //Dumb component
-const Team = (props) => {
-    const css = { backgroundColor: props.secondaryColor}
+const Team = ({team, colaborators}) => {
+
     return (
-       props.colaborators.length > 0 && <section className='team' style={css}>
-            <h3 style={{ borderColor: props.primaryColor }}>{props.name}</h3>
+       colaborators.length > 0 && <section className='team'  style={{ backgroundImage: 'url(/images/fundo.png)', backgroundColor: team.primaryColor }}>
+            <h3 style={{ borderColor: team.primaryColor }}>{team.name}</h3>
             <div className='colaborators'>
-                {props.colaborators.map(colaborator => 
-                <Colaborator 
-                    backgroundColor={props.primaryColor}
-                    key={colaborator.name}
-                    name={colaborator.name} 
-                    cargo={colaborator.cargo}
-                    image={colaborator.image} 
+                {colaborators.map((colaborator, index) => {
+                console.log('render colaborator')
+                return <Colaborator 
+                    key={index}
+                    colaborator={colaborator}
+                    backgroundColor={team.secondaryColor}
+                    // onDelete={() => {onDelete}}
                 />
-            )}
+            })}
             </div>
         </section>
     )
