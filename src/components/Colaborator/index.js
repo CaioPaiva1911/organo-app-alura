@@ -3,7 +3,11 @@ import { IoCloseCircleSharp } from "react-icons/io5"
 
 const Colaborator = ({colaborator, backgroundColor, onDelete}) => {
     return (<div className='colaborator'>
-        <IoCloseCircleSharp  size={25} className='delete' onClick={onDelete} />
+        <IoCloseCircleSharp 
+            size={25} 
+            className='delete' 
+            onClick={() => onDelete(colaborator.id)} 
+        />
         <div className='cabecalho' style={{backgroundColor: backgroundColor}}>
             <img src={colaborator.image} alt={colaborator.name} />
         </div>
