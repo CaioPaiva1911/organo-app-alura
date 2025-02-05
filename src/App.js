@@ -193,13 +193,24 @@ function App() {
 
   const [colaborators, setColaborators] = useState(initial)
 
+  function deleteColaborator() {
+    console.log('deleting colaborator!')
+  }
+
   return (
     <div className="App">
       <Banner />
       <Form teams={teams.map(team => team.name)} onCreate={colaborator => setColaborators([...colaborators, colaborator])}/>
       <section className='teams'>
         <h1>My organization</h1>
-        {teams.map((team, index) => <Team key={index} team={team} colaborators={colaborators.filter(colaborator => colaborator.team === team.name)}/>)}
+        {teams.map((team, index) => 
+          <Team 
+            key={index} 
+            team={team} 
+            colaborators={colaborators.filter(colaborator => colaborator.team === team.name)}
+            onDelete={deleteColaborator}
+          />
+        )}
       </section>
       <Footer />
     </div>
