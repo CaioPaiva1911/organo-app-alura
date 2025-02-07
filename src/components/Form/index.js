@@ -5,12 +5,14 @@ import TextInput from '../TextInput'
 import './Form.css'
 
 
-const Form = ({onCreate, teams}) => {
+const Form = ({onCreate, teams, addTeam}) => {
 
     const [name, setName] = useState('')
     const [cargo, setCargo] = useState('')
     const [image, setImage] = useState('')
     const [team, setTeam] = useState('')
+    const [teamName, setTeamName] = useState('')
+    const [teamColor, setTeamColor] = useState('')
     
     const inSave = (event) => {
         event.preventDefault()
@@ -59,6 +61,31 @@ const Form = ({onCreate, teams}) => {
                     onChange={value => setTeam(value)}
                 />
                 <Button text='Criar card'/>
+            </form>
+
+            <form className="form" onSubmit={(event) => {
+                event.preventDefault()
+                addTeam({name: teamName, color: teamColor})
+                setTeamColor('')
+                setTeamName('')
+            }}>
+                <h2>Preecha os dados para criar um novo time.</h2>
+                <TextInput 
+                    required 
+                    label='Nome' 
+                    placeholder="Digite o nome do time"
+                    value={teamName}
+                    onChange={value => setTeamName(value)}
+                />
+                <TextInput 
+                    required
+                    label="Cor" 
+                    placeholder="Digite a cor do time" 
+                    value={teamColor} 
+                    onChange={value => setTeamColor(value)}
+                />
+
+                <Button text='Criar um novo time'/>
             </form>
         </section>
     )

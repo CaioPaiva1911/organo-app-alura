@@ -231,10 +231,18 @@ function App() {
       }))
   }
 
+  function addTeam(newTeam) {
+    setTeams([...teams, { ...newTeam, id: uuidv4()} ])
+  }
+
   return (
     <div className="App">
       <Banner />
-      <Form teams={teams.map(team => team.name)} onCreate={colaborator => setColaborators([...colaborators, colaborator])}/>
+      <Form 
+        addTeam={addTeam}
+        teams={teams.map(team => team.name)} 
+        onCreate={colaborator => setColaborators([...colaborators, colaborator])}
+      />
       <section className='teams'>
         <h1>My organization</h1>
         {teams.map((team, index) => 
