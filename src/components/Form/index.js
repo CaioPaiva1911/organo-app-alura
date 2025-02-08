@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Button from '../Button'
 import DropdownList from '../DropdownList'
-import TextInput from '../TextInput'
+import Input from '../Input'
 import './Form.css'
 
 
@@ -33,21 +33,21 @@ const Form = ({onCreate, teams, addTeam}) => {
         <section className="form-container">
             <form className="form" onSubmit={inSave}>
                 <h2>Preecha os dados para criar o card do colaborador</h2>
-                <TextInput 
+                <Input 
                     required={true} 
                     label='Nome' 
                     placeholder="Digite seu nome"
                     value={name}
                     onChange={value => setName(value)}
                 />
-                <TextInput 
+                <Input 
                     required={true} 
                     label="Cargo" 
                     placeholder="Digite seu cargo" 
                     value={cargo}
                     onChange={value => setCargo(value)}
                 />
-                <TextInput 
+                <Input 
                     label="Imagem" 
                     placeholder="Digite o endereço da imagem"
                     value={image}
@@ -70,15 +70,16 @@ const Form = ({onCreate, teams, addTeam}) => {
                 setTeamName('')
             }}>
                 <h2>Preecha os dados para criar um novo time.</h2>
-                <TextInput 
+                <Input 
                     required 
                     label='Nome' 
                     placeholder="Digite o nome do time"
                     value={teamName}
                     onChange={value => setTeamName(value)}
                 />
-                <TextInput 
+                <Input 
                     required
+                    type='color'
                     label="Cor" 
                     placeholder="Digite a cor do time" 
                     value={teamColor} 
