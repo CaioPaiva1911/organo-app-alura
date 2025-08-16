@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import Banner from './components/Banner';
 import Form from './components/Form';
 import Team from './components/Team';
 import Footer from './components/Footer';
 import { v4 as uuidv4 } from 'uuid';
+
+import Banner from './components/Banner';
 
 function App() {
 
@@ -268,7 +269,7 @@ function App() {
 
   return (
     <div className="App">
-      <Banner />
+      <Banner enderecoImagem='/images/banner.png' textoAlternativo='Principal banner of page organo' />
       <Form 
         addTeam={addTeam}
         teams={teams.map(team => team.name)} 
