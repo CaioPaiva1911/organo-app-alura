@@ -1,9 +1,9 @@
 import './Button.css'
 
-import React from 'react';
+import { ReactElement } from 'react';
 
 interface ButtonProps {
-    text: string
+    text: string | ReactElement
 }
 
 export const Button = ({ text }: ButtonProps) => {

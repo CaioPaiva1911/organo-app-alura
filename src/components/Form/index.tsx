@@ -3,9 +3,15 @@ import Button from '../Button'
 import DropdownList from '../DropdownList'
 import Input from '../Input'
 import './Form.css'
+import { IColaborator } from '../../shared/interfaces/Colaborator'
 
+interface FormProps {
+    onCreate: (colaborator: IColaborator) => void;
+    teams: string[];
+    addTeam: (team: { name: string; color: string }) => void;
+}
 
-const Form = ({onCreate, teams, addTeam}) => {
+const Form = ({onCreate, teams, addTeam}: FormProps) => {
 
     const [name, setName] = useState('')
     const [cargo, setCargo] = useState('')
@@ -14,7 +20,7 @@ const Form = ({onCreate, teams, addTeam}) => {
     const [teamName, setTeamName] = useState('')
     const [teamColor, setTeamColor] = useState('')
     
-    const inSave = (event) => {
+    const inSave = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         console.log('form submitted', name, cargo, image, team) 
         onCreate({

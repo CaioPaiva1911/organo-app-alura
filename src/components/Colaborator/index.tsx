@@ -1,6 +1,6 @@
 import { IColaborator } from '../../shared/interfaces/Colaborator';
 import './Colaborator.css'
-import { IoIosCloseCircle , IoMdHeart, IoIosHeartEmpty } from "react-icons/io"
+import { IoIosCloseCircle, IoMdHeart, IoIosHeartEmpty } from "react-icons/io"
 
 interface ColaboratorProps {
     colaborator: IColaborator;
@@ -9,10 +9,12 @@ interface ColaboratorProps {
     onFavorite: (id: string) => void;
 }
 
-const Colaborator = ({colaborator, backgroundColor, onDelete, onFavorite }: ColaboratorProps) => {
+const Colaborator = ({ colaborator, backgroundColor, onDelete, onFavorite }: ColaboratorProps) => {
 
     function toFavorite() {
-        onFavorite(colaborator.id)
+        if(colaborator.id) {
+            onFavorite(colaborator.id)    
+        }
     }
     const propsFavorite = {
         size: 25,
@@ -29,22 +31,22 @@ const Colaborator = ({colaborator, backgroundColor, onDelete, onFavorite }: Cola
     }
 
     return (<div className='colaborator'>
-        <IoIosCloseCircle  
-            size={25} 
-            className='delete' 
-            onClick={() => onDelete(colaborator.id)} 
+        <IoIosCloseCircle
+            size={25}
+            className='delete'
+            onClick={() => colaborator.id && onDelete(colaborator.id)}
         />
-        <div className='cabecalho' style={{backgroundColor: validateColor(backgroundColor)}}>
+        <div className='cabecalho' style={{ backgroundColor: validateColor(backgroundColor) }}>
             <img src={colaborator.image} alt={colaborator.name} />
         </div>
         <div className='rodape'>
             <h4>{colaborator.name}</h4>
             <h5>{colaborator.cargo}</h5>
             <div className='favorite'>
-                {colaborator.favorited 
-                    ? <IoMdHeart {...propsFavorite}  color='#ff0000'/> 
-                    : <IoIosHeartEmpty {...propsFavorite} /> 
-                }  
+                {colaborator.favorited
+                    ? <IoMdHeart {...propsFavorite} color='#ff0000' />
+                    : <IoIosHeartEmpty {...propsFavorite} />
+                }
             </div>
         </div>
     </div>)
