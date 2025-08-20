@@ -1,7 +1,15 @@
+import { IColaborator } from '../../shared/interfaces/Colaborator';
 import './Colaborator.css'
 import { IoIosCloseCircle , IoMdHeart, IoIosHeartEmpty } from "react-icons/io"
 
-const Colaborator = ({colaborator, backgroundColor, onDelete, onFavorite }) => {
+interface ColaboratorProps {
+    colaborator: IColaborator;
+    backgroundColor: string;
+    onDelete: (id: string) => void;
+    onFavorite: (id: string) => void;
+}
+
+const Colaborator = ({colaborator, backgroundColor, onDelete, onFavorite }: ColaboratorProps) => {
 
     function toFavorite() {
         onFavorite(colaborator.id)
@@ -12,7 +20,7 @@ const Colaborator = ({colaborator, backgroundColor, onDelete, onFavorite }) => {
     }
 
     // Função para validar e corrigir o formato da cor
-    function validateColor(color) {
+    function validateColor(color: string): string {
         const hexColorPattern = /^#([0-9A-F]{3}){1,2}$/i;
         if (hexColorPattern.test(color)) {
             return color;
