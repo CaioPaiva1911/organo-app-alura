@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import Form from './components/Form';
 import Team from './components/Team';
-import Footer from './components/Footer';
 import { v4 as uuidv4 } from 'uuid';
 
 import Banner from './components/Banner';
+import Footer from './components/Footer';
+import { ITeam } from './shared/interfaces/Team';
+import { IColaborator } from './shared/interfaces/Colaborator';
 
 function App() {
 
-  const [teams, setTeams]  = useState([
+  const [teams, setTeams] = useState<ITeam[]>([
     {
       id: uuidv4(),
       name: 'Programming',
@@ -241,48 +243,48 @@ function App() {
     },
   ]
 
-  const [colaborators, setColaborators] = useState(initial)
+  const [colaborators, setColaborators] = useState<IColaborator[]>(initial)
 
-  function deleteColaborator(id) {
+  function deleteColaborator(id: string) {
     setColaborators(colaborators.filter(colaborator => colaborator.id !== id))
   }
 
-  function changeTeamColor(color, id) {
+  function changeTeamColor(color: string, id: string) {
     setTeams(teams.map(team => {
-        if(team.id === id) {
-          team.color = color;
-        }
-        return team;
-      }))
+      if (team.id === id) {
+        team.color = color;
+      }
+      return team;
+    }))
   }
 
-  function addTeam(newTeam) {
-    setTeams([...teams, { ...newTeam, id: uuidv4()} ])
+  function addTeam(newTeam: { name: string; color: string }) {
+    setTeams([...teams, { ...newTeam, id: uuidv4() }])
   }
 
-  function onFavorite(id) {
-      setColaborators(colaborators.map(colaborator => {
-        if(colaborator.id === id) colaborator.favorited = !colaborator.favorited;
-        return colaborator
-      }))
+  function onFavorite(id: string) {
+    setColaborators(colaborators.map(colaborator => {
+      if (colaborator.id === id) colaborator.favorited = !colaborator.favorited;
+      return colaborator
+    }))
   }
 
   return (
     <div className="App">
       <Banner enderecoImagem='/images/banner.png' textoAlternativo='Principal banner of page organo' />
-      <Form 
+      <Form
         addTeam={addTeam}
-        teams={teams.map(team => team.name)} 
+        teams={teams.map(team => team.name)}
         onCreate={colaborator => setColaborators([...colaborators, colaborator])}
       />
       <section className='teams'>
         <h1>My organization</h1>
-        {teams.map((team, index) => 
+        {teams.map((team, index) =>
           <Team
             onFavorite={onFavorite}
             changeColor={changeTeamColor}
-            key={index} 
-            team={team} 
+            key={index}
+            team={team}
             colaborators={colaborators.filter(colaborator => colaborator.team === team.name)}
             onDelete={deleteColaborator}
           />

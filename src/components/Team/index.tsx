@@ -1,15 +1,11 @@
 import { IColaborator } from '../../shared/interfaces/Colaborator';
+import { ITeam } from '../../shared/interfaces/Team';
 import Colaborator from '../Colaborator';
 import './Team.css';
 import hexToRgba from 'hex-to-rgba';
 
 interface TeamProps {
-    team: {
-        id: string;
-        name: string;
-        color: string;
-        primaryColor: string;
-    };
+    team: ITeam;
     colaborators: IColaborator[]
     onDelete: (teamId: string) => void;
     changeColor: (color: string, teamId: string) => void;
