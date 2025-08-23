@@ -6,4 +6,5 @@ export interface IColaborator {
     cargo: string;
     favorited?: boolean;
     team?: string;
+    date: string;
 }

@@ -42,6 +42,7 @@ const Colaborator = ({ colaborator, backgroundColor, onDelete, onFavorite }: Col
         <div className='rodape'>
             <h4>{colaborator.name}</h4>
             <h5>{colaborator.cargo}</h5>
+            <h5>{new Date(colaborator.date).toLocaleDateString()}</h5>
             <div className='favorite'>
                 {colaborator.favorited
                     ? <IoMdHeart {...propsFavorite} color='#ff0000' />

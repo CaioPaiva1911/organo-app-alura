@@ -1,7 +1,7 @@
 import './input.css'
 
 interface InputProps {
-    type?: string;
+    type?: 'text' | 'date' | 'email' | 'password' | 'number';
     label: string;
     placeholder: string;
     value: string;
